@@ -1,18 +1,20 @@
-#!/usr/bin/env python2
-""" sounds from http://www.soundjig.com/pages/soundfx/drums.html"""
-#from pyserial import Serial
+#!/usr/bin/env python
+from pyserial import Serial
 from pandas import read_excel
 import pygame
 import numpy as np
 from scipy.io.wavfile import read
 
-def main(xls,rfidcode):
-  
-    data = read_excel(xls,index_col=0)
+def main(xls,rfidcode,sport):
     
-    wavfn = matchrfid(rfidcode,data)
-
-    playmatch(wavfn)
+    s = Serial(sport, baudrate=19200, timeout=1, bytesize=8,parity='N', stopbits=1, xonxoff=0, rtscts=0)
+    s.open()
+    bytesavail = s.inWaiting()
+    if bytesavail:
+        data = read_excel(xls,index_col=0)
+        wavfn = matchrfid(rfidcode,data)
+        playmatch(wavfn)
+    s.close()
 
 def matchrfid(tagnum,data):
     return data.ix[tagnum,1]
@@ -40,4 +42,4 @@ def playmatch(wavfn):
     
 if __name__ == '__main__':
     from sys import argv
-    main('rfid2name.xlsx',int(argv[1]))
+    main('rfid2name.xlsx',int(argv[1]),'/dev/tty32')
