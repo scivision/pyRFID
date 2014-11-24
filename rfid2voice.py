@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# copyright Michael Hirsch 2014
+# GPLv3+ license
 from pyserial import Serial
 from pandas import read_excel
 import pygame
