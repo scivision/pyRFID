@@ -1,4 +1,6 @@
-rfid-example
+[![Code Climate](https://codeclimate.com/github/scienceopen/pyRFID/badges/gpa.svg)](https://codeclimate.com/github/scienceopen/pyRFID)
+
+pyRFID
 ============
 An example of using the serial port to read an RFID tag and play a corresponding sound file using Python.
 
