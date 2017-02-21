@@ -1,4 +1,0 @@
-pygame
-pandas
-scipy
-pyserial
